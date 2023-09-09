@@ -34,3 +34,11 @@ use Illuminate\Support\Facades\Route;
         return view('konten'
         );
     });
+   
+
+    Route::get('/boom', [MencobaController::class, 'boomesport']);
+    Route::get('/prx', [MencobaController::class, 'prxesport']);
+    Route::get('/fnantic', [MencobaController::class, 'fnanticesport']);
+    Route::get('/fpx', [MencobaController::class, 'fpxesport']);
+    Route::get('/', [MencobaController::class, 'beranda']);
+   
