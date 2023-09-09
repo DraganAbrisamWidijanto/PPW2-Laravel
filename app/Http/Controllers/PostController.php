@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function boomsport()
+    public function boomesport()
     {
         return view('boom');
     }
