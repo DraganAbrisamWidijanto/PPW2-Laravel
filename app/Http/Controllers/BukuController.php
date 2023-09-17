@@ -3,19 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Buku;
 
-class PostController extends Controller
+class BukuController extends Controller
 {
-    public function boomesport()
-    {
-        return view('boom');
-    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $data_buku = Buku::all()->sortBy('id');
+        $no=0;
+        
+         // Hitung jumlah data buku
+        $jumlahData = Buku::count();
+
+        // Hitung jumlah total harga
+        $totalHarga = Buku::sum('harga');
+
+        return view('index', compact('data_buku', 'no', 'jumlahData', 'totalHarga'));
     }
 
     /**
@@ -65,6 +71,4 @@ class PostController extends Controller
     {
         //
     }
-
-    
 }
