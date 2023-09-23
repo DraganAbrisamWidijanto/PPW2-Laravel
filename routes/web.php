@@ -44,4 +44,14 @@ use App\Http\Controllers\BukuController;
     Route::get('/', [MencobaController::class, 'beranda']);
    
     Route::get('/buku', [BukuController::class, 'index']);
+    Route::get('/bukuCreate', [BukuController::class, 'create'])->name('buku.create');
+    Route::post('/buku', [BukuController::class, 'store'])->name('buku.store');
+    
+    //menuju halaman edit
+    Route::get('/bukuEdit/{id}', [BukuController::class, 'edit'])->name('bukuEdit');
+
+    //menyimpan hasil edit
+    Route::post('/buku.update/{id}', [BukuController::class, 'update'])->name('buku.update');
+
+    Route::post('/buku/{id}', [BukuController::class, 'destroy'])->name('buku.destroy');
 
