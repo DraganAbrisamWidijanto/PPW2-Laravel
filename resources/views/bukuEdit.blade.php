@@ -56,6 +56,13 @@
 </head>
 <body>
     <div class='container'>
+        @if(count($errors) > 0)
+                <ul class="alert alert-danger list-group">
+                    @foreach ($errors->all() as $error)
+                        <li class="list-group-item">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
         <h4 class="mt-4">Edit Data Buku</h4>
         <form method="post" action="{{ route('buku.update', $buku->id) }}">
             @csrf

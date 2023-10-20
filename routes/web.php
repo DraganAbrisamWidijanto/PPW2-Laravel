@@ -43,6 +43,11 @@ use App\Http\Controllers\BukuController;
     Route::get('/fpx', [MencobaController::class, 'fpxesport']);
     Route::get('/', [MencobaController::class, 'beranda']);
    
+    Route::get('/master', function () {
+        return view('master'
+        );
+    });
+
     Route::get('/buku', [BukuController::class, 'index']);
     Route::get('/bukuCreate', [BukuController::class, 'create'])->name('buku.create');
     Route::post('/buku', [BukuController::class, 'store'])->name('buku.store');
@@ -54,4 +59,6 @@ use App\Http\Controllers\BukuController;
     Route::post('/buku.update/{id}', [BukuController::class, 'update'])->name('buku.update');
 
     Route::post('/buku/{id}', [BukuController::class, 'destroy'])->name('buku.destroy');
+
+    Route::get('/buku/search', [BukuController::class, 'search'])->name('buku.search');
 

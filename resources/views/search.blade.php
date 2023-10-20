@@ -9,17 +9,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    @if(session('pesan'))
-    <div class="alert alert-success" id="pesan">
-        {{ session('pesan') }}
-    </div>
-    <script type="text/javascript">
-        // Setelah 2 detik, hapus pesan notifikasi
-        setTimeout(function(){
-            document.getElementById('pesan').style.display = 'none';
-        }, 3000); // 2000 milidetik = 2 detik
-    </script>
-@endif
+    @if(count($data_buku))
+    <div class="alert alert-success">Ditemukan <strong>{{ count($data_buku) }}</strong>
+    data dengan kata: <strong>{{ $cari }}</strong></div>
+    
 <form action="{{ route('buku.search') }}" method="get">@csrf
     <input type='text' name="kata" class="form-control" placeholder="Cari Buku .." style='width:30%; display:inline; margin-top:10px; margin-bottom:10px; float: right;' value="{{ old('kata') }}">
 </form>
@@ -61,15 +54,14 @@
     </div>   
     
     
-    <div class="mt-3">
-        <strong>Jumlah Data: </strong> {{ $jumlahData }}
-    </div>
+  
     
-    <div class="mt-3">
-        <strong>Total Harga: </strong> {{ "Rp " . number_format($totalHarga, 2, ',', '.') }}
+    @else
+    <div class="alert alert-warning">
+        <h4>Data {{ $cari }} tidak ditemukan</h4>
+        <a href="/buku" class="btn btn-warning">Kembali</a>
     </div>
-    
-   
+    @endif
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

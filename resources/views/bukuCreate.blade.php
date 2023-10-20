@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Tambah Buku</title>
+    <link rel="stylesheet" href="{{ asset('css/boostrap.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.css') }}">
+    <script src="{{asset('js/jquery.js')}}"></script>
+    <script src="{{asset('js/bootstrap-datepicker.js')}}"></script>
     <style>
         .container {
             margin-top: 20px;
@@ -63,6 +68,13 @@
 </head>
 <body>
     <div class='container'>
+        @if(count($errors) > 0)
+                <ul class="alert alert-danger list-group">
+                    @foreach ($errors->all() as $error)
+                        <li class="list-group-item">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
         <h4 class="mt-4">Tambah Buku</h4>
         <form method="post" action="{{ route('buku.store') }}">
             @csrf
@@ -80,7 +92,7 @@
             </div>
             <div>
                 <label for="tgl_terbit">Tanggal Terbit</label>
-                <input type="date" name="tgl_terbit">
+                <input type="date" id="tgl_terbit" name="tgl_terbit" class="date" placeholder="yyyy/mm/dd" class="date form-control">
             </div>
             <div class="button-group">
                 <button type="submit">Simpan</button>
@@ -88,5 +100,11 @@
             </div>
         </form>
     </div>
+    <script type="text/javascript">
+        $('.date').datepicker({
+            format: 'yyyy/mm/dd',
+            autoclose: 'true',
+        })</script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
 </body>
 </html>
